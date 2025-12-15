@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiến Lược Nhân Sự 2026 - Build Talents</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;700&display=swap');
+
+        :root {
+            --brand-primary: #1a237e; /* Xanh đậm */
+            --brand-accent: #FF9800; /* Cam */
+            --brand-success: #009688; /* Xanh lá */
+            --brand-secondary: #c62828; /* Đỏ cảnh báo */
+            --bg-gradient-start: #fdfbfb;
+            --bg-gradient-end: #ebedee;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
+            color: #374151;
+        }
+
+        h1, h2, h3, .brand-font {
+            font-family: 'Oswald', sans-serif; /* Theo yêu cầu font Oswald */
+            text-transform: uppercase;
+        }
+
+        .serif-font {
+             font-family: 'Playfair Display', serif;
+        }
+
+        .tab-active {
+            border-bottom: 4px solid var(--brand-accent);
+            color: var(--brand-primary);
+            background-color: rgba(255, 152, 0, 0.1);
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--brand-accent);
+        }
+        
+        .warning-card {
+            border-left: 4px solid var(--brand-secondary);
+            background-color: #fef2f2;
+        }
+
+        /* Animation utilities */
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#1a237e',
+                            accent: '#FF9800',
+                            success: '#009688',
+                            alert: '#c62828'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header class="w-full py-12 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden bg-white shadow-sm">
+        <div class="relative z-10 max-w-5xl mx-auto">
+            <h1 class="text-6xl md:text-8xl font-bold mb-2 tracking-tighter text-brand">
+                BUILD TALENTS
+            </h1>
+            <p class="text-xl md:text-2xl font-medium mb-8 text-brand-success brand-font tracking-wide">
+                Chiến Lược Nhân Sự Toàn Diện 2026
+            </p>
+            <div class="h-1 w-24 bg-brand-accent mx-auto mb-8"></div>
+            <p class="text-lg text-gray-600 mb-6 max-w-3xl mx-auto leading-relaxed">
+                Hệ thống hóa toàn bộ thay đổi về <strong>Pháp lý Lao động, BHXH, Tiền lương & Thuế</strong>. 
+                Sẵn sàng cho thời điểm chuyển giao <span class="text-brand-alert font-bold">01/01/2026</span>.
+            </p>
+        </div>
+    </header>
+
+    <div class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-nowrap overflow-x-auto md:justify-center items-center gap-1 py-2 no-scrollbar">
+                <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-button tab-active whitespace-nowrap px-5 py-3 text-sm md:text-base font-bold brand-font hover:text-brand transition-colors flex items-center gap-2">
+                    <span class="bg-gray-200 text-gray-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span> TỔNG QUAN
+                </button>
+                <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-button whitespace-nowrap px-5 py-3 text-sm md:text-base font-bold brand-font text-gray-500 hover:text-brand transition-colors flex items-center gap-2">
+                    <span class="bg-gray-200 text-gray-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span> TÀI CHÍNH
+                </button>
+                <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-button whitespace-nowrap px-5 py-3 text-sm md:text-base font-bold brand-font text-gray-500 hover:text-brand transition-colors flex items-center gap-2">
+                    <span class="bg-gray-200 text-gray-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span> TUÂN THỦ
+                </button>
+                <button onclick="switchTab('tab4')" id="btn-tab4" class="tab-button whitespace-nowrap px-5 py-3 text-sm md:text-base font-bold brand-font text-gray-500 hover:text-brand transition-colors flex items-center gap-2">
+                    <span class="bg-gray-200 text-gray-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">4</span> RỦI RO
+                </button>
+                <button onclick="switchTab('tab5')" id="btn-tab5" class="tab-button whitespace-nowrap px-5 py-3 text-sm md:text-base font-bold brand-font text-gray-500 hover:text-brand transition-colors flex items-center gap-2">
+                    <span class="bg-gray-200 text-gray-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">5</span> THUẾ & KHÁC
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <main id="app-container" class="flex-grow container mx-auto px-4 py-8 md:py-12">
+        <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-2xl p-6 md:p-10 min-h-[600px] border-t-8 border-brand">
+            
+            <div id="tab1" class="tab-content block fade-in">
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="md:w-1/2">
+                        <h3 class="text-4xl text-brand mb-6 brand-font">LÀN SÓNG PHÁP LÝ 2026</h3>
+                        <p class="text-gray-600 mb-6 text-lg">
+                            Một khung khổ pháp lý hoàn toàn mới cho quan hệ lao động và an sinh xã hội chính thức có hiệu lực.
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="p-4 bg-gray-50 border-l-4 border-brand-accent rounded shadow-sm">
+                                <strong class="block text-brand brand-font text-lg">Nghị định 158 & 159/2025/NĐ-CP</strong>
+                                <span class="text-sm text-gray-600">Trụ cột mới về BHXH và An sinh.</span>
+                            </li>
+                            <li class="p-4 bg-gray-50 border-l-4 border-brand-accent rounded shadow-sm">
+                                <strong class="block text-brand brand-font text-lg">Thông tư 11 & 12/2025/TT-BNV</strong>
+                                <span class="text-sm text-gray-600">Hướng dẫn chi tiết thực thi & thang bảng lương.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center">
+                        <div class="bg-brand text-white p-10 rounded-full w-64 h-64 flex flex-col items-center justify-center text-center shadow-xl border-4 border-brand-accent">
+                            <span class="text-sm brand-font tracking-widest mb-2">HIỆU LỰC</span>
+                            <span class="text-5xl font-bold brand-font">01/01</span>
+                            <span class="text-5xl font-bold brand-font">2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab2" class="tab-content hidden fade-in">
+                <h3 class="text-3xl text-brand mb-8 brand-font text-center">TĂNG ĐỒNG LOẠT - ÁP LỰC KÉP</h3>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-blue-50 p-6 rounded-xl">
+                        <h4 class="text-xl font-bold text-brand brand-font mb-4 flex items-center">
+                            <span class="bg-brand text-white w-8 h-8 rounded flex items-center justify-center mr-2">1</span>
+                            LƯƠNG TỐI THIỂU VÙNG 2026
+                        </h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-3 bg-white rounded shadow-sm border-l-4 border-brand-success">
+                                <span class="font-bold text-gray-700">Vùng I</span>
+                                <span class="text-2xl font-bold text-brand brand-font">5,31 <small>triệu</small></span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-white rounded shadow-sm">
+                                <span class="font-bold text-gray-700">Vùng II</span>
+                                <span class="text-xl font-bold text-brand brand-font">4,73 <small>triệu</small></span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-white rounded shadow-sm">
+                                <span class="font-bold text-gray-700">Vùng III</span>
+                                <span class="text-xl font-bold text-brand brand-font">4,14 <small>triệu</small></span>
+                            </div>
+                             <div class="flex justify-between items-center p-3 bg-white rounded shadow-sm">
+                                <span class="font-bold text-gray-700">Vùng IV</span>
+                                <span class="text-xl font-bold text-brand brand-font">3,70 <small>triệu</small></span>
+                            </div>
+                        </div>
+                         <p class="mt-4 text-sm text-brand-alert italic text-right">→ Bắt buộc điều chỉnh từ kỳ lương 01/2026</p>
+                    </div>
+
+                    <div class="bg-orange-50 p-6 rounded-xl">
+                         <h4 class="text-xl font-bold text-brand brand-font mb-4 flex items-center">
+                            <span class="bg-brand text-white w-8 h-8 rounded flex items-center justify-center mr-2">2</span>
+                            TÁC ĐỘNG BẢO HIỂM
+                        </h4>
+                        <ul class="space-y-4">
+                            <li class="flex gap-3">
+                                <svg class="w-6 h-6 text-brand-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                                <span class="text-gray-700"><strong>Mức đóng sàn tăng:</strong> Mức lương đóng BHXH tối thiểu sẽ tự động tăng theo LTT Vùng mới.</span>
+                            </li>
+                             <li class="flex gap-3">
+                                <svg class="w-6 h-6 text-brand-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span class="text-gray-700"><strong>OT tăng chi phí:</strong> Tiền làm thêm giờ phải tính trên Lương thực nhận mới (≥ LTT Vùng 2026).</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab3" class="tab-content hidden fade-in">
+                <h3 class="text-3xl text-brand mb-8 brand-font text-center">DANH MỤC HÀNH ĐỘNG ƯU TIÊN</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="feature-card p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+                        <div class="text-brand-success mb-4">
+                             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </div>
+                        <h4 class="text-xl font-bold brand-font mb-2">HỢP ĐỒNG LAO ĐỘNG</h4>
+                        <p class="text-sm text-gray-600 mb-4">Triển khai giao kết HĐLĐ điện tử & Điều chỉnh mức lương mới trong HĐLĐ.</p>
+                    </div>
+                    <div class="feature-card p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+                        <div class="text-brand-success mb-4">
+                             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        </div>
+                        <h4 class="text-xl font-bold brand-font mb-2">HỆ THỐNG VĂN BẢN</h4>
+                        <p class="text-sm text-gray-600 mb-4">Cập nhật Nội quy, Quy chế lương (TT 11/2025). Ban hành Quy chế thưởng bằng văn bản.</p>
+                    </div>
+                    <div class="feature-card p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+                        <div class="text-brand-success mb-4">
+                             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6 3 3 0 000 6zM5 19a2 2 0 012-2h6a2 2 0 012 2v1H5v-1z"></path></svg>
+                        </div>
+                        <h4 class="text-xl font-bold brand-font mb-2">TRUYỀN THÔNG</h4>
+                        <p class="text-sm text-gray-600 mb-4">Công bố chính sách thưởng Tết và Quy chế mới trước Tết Nguyên Đán.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab4" class="tab-content hidden fade-in">
+                <div class="warning-card p-8 rounded-xl shadow-inner">
+                    <h3 class="text-3xl text-brand-alert mb-6 brand-font flex items-center">
+                        <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        PHẠT ĐẾN 75 TRIỆU ĐỒNG
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-4 underline">Các lỗi trọng yếu:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>Sai hợp đồng lao động</li>
+                                <li>Sai tiền lương & cách tính OT</li>
+                                <li>Nợ đóng BHXH</li>
+                                <li>Không khai báo biến động lao động</li>
+                            </ul>
+                        </div>
+                        <div>
+                             <h4 class="font-bold text-gray-800 mb-4 underline">Hậu quả pháp lý:</h4>
+                             <p class="mb-4 text-gray-700">Thanh tra lao động sẽ tăng cường mạnh từ <strong>Q1/2026</strong>. Các vi phạm sẽ bị truy thu và xử phạt theo NĐ 12/2022 & NĐ 274/2025.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab5" class="tab-content hidden fade-in">
+                <h3 class="text-3xl text-brand mb-2 brand-font text-center">TÁC ĐỘNG DÂY CHUYỀN: THUẾ & QUY ĐỊNH LIÊN QUAN</h3>
+                <p class="text-center text-gray-500 mb-8 italic">(Phân tích dựa trên các thay đổi về Lương & BHXH đã công bố)</p>
+
+                <div class="space-y-6">
+                    <div class="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:border-brand-accent transition-colors">
+                        <div class="md:w-1/4 flex flex-col items-center justify-center bg-gray-50 rounded-lg p-4">
+                            <span class="text-4xl">💰</span>
+                            <h4 class="text-xl font-bold brand-font text-brand mt-2 text-center">THUẾ TNCN</h4>
+                        </div>
+                        <div class="md:w-3/4">
+                            <h5 class="text-lg font-bold text-gray-800 mb-2">Lương Tăng = Rủi Ro Nhảy Bậc Thuế</h5>
+                            <p class="text-gray-600 mb-3">Khi điều chỉnh Lương tối thiểu vùng (tăng khoảng 6% tại các vùng), tổng thu nhập chịu thuế của người lao động sẽ tăng lên.</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 bg-yellow-50 p-3 rounded">
+                                <li><strong>Hành động:</strong> Rà soát lại hồ sơ đăng ký người phụ thuộc để tối ưu giảm trừ gia cảnh.</li>
+                                <li><strong>Lưu ý:</strong> Cân nhắc thiết kế gói "Phúc lợi linh hoạt" (Flexible Benefits) gồm các khoản phụ cấp không chịu thuế (ăn trưa, trang phục...) đúng quy định pháp luật để giảm áp lực thuế cho NLĐ.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:border-brand-accent transition-colors">
+                        <div class="md:w-1/4 flex flex-col items-center justify-center bg-gray-50 rounded-lg p-4">
+                            <span class="text-4xl">🏢</span>
+                            <h4 class="text-xl font-bold brand-font text-brand mt-2 text-center">THUẾ TNDN</h4>
+                        </div>
+                        <div class="md:w-3/4">
+                            <h5 class="text-lg font-bold text-gray-800 mb-2">Chi Phí Được Trừ & Hồ Sơ Chứng Minh</h5>
+                            <p class="text-gray-600 mb-3">Chi phí lương và thưởng tăng lên sẽ làm giảm thu nhập chịu thuế TNDN, NHƯNG yêu cầu về hồ sơ chứng từ sẽ chặt chẽ hơn.</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 bg-blue-50 p-3 rounded">
+                                <li><strong>Yêu cầu bắt buộc:</strong> Quy chế thưởng 2026 phải được ban hành bằng văn bản (như đã nêu ở Tab 3) để các khoản chi thưởng Tết/Thưởng hiệu quả được tính là chi phí hợp lý.</li>
+                                <li><strong>Rủi ro:</strong> Nếu Hợp đồng lao động điện tử không tuân thủ đúng quy định về chữ ký số, chi phí lương có thể bị cơ quan thuế xuất toán.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                     <div class="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:border-brand-accent transition-colors">
+                        <div class="md:w-1/4 flex flex-col items-center justify-center bg-gray-50 rounded-lg p-4">
+                            <span class="text-4xl">🤝</span>
+                            <h4 class="text-xl font-bold brand-font text-brand mt-2 text-center">CÔNG ĐOÀN PHÍ</h4>
+                        </div>
+                        <div class="md:w-3/4">
+                            <h5 class="text-lg font-bold text-gray-800 mb-2">Tăng Theo Quỹ Lương Đóng BHXH</h5>
+                            <p class="text-gray-600 mb-3">Kinh phí công đoàn (2% quỹ lương) được tính trên quỹ tiền lương làm căn cứ đóng BHXH.</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li>Vì mức lương tối thiểu vùng tăng -> Mức đóng sàn BHXH tăng -> <strong>Kinh phí công đoàn doanh nghiệp phải đóng sẽ tăng tương ứng.</strong></li>
+                                <li>Cần lập dự toán ngân sách nhân sự 2026 bao gồm khoản tăng thêm này.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-brand text-white py-12 border-t-4 border-brand-accent">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-2 brand-font">BUILD TALENTS</h2>
+            <p class="opacity-80 mb-6">Đối tác chiến lược trong quản trị & đào tạo nhân sự</p>
+            <div class="inline-block border-2 border-white/20 p-6 rounded-lg">
+                <p class="font-bold text-xl brand-font tracking-wider">ROSIE ĐÀO HẠNH GIANG</p>
+                <p class="text-sm uppercase tracking-widest text-brand-accent mt-1">CEO Build Talents</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('block');
+            });
+            
+            // Deactivate all buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('tab-active', 'text-brand');
+                btn.classList.add('text-gray-500');
+                // Reset bubbles
+                const bubble = btn.querySelector('span');
+                bubble.classList.remove('bg-brand', 'text-white');
+                bubble.classList.add('bg-gray-200', 'text-gray-700');
+            });
+
+            // Show selected tab
+            const selectedTab = document.getElementById(tabId);
+            selectedTab.classList.remove('hidden');
+            selectedTab.classList.add('block');
+
+            // Activate button
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.add('tab-active', 'text-brand');
+            activeBtn.classList.remove('text-gray-500');
+            
+            // Highlight bubble
+            const activeBubble = activeBtn.querySelector('span');
+            activeBubble.classList.remove('bg-gray-200', 'text-gray-700');
+            activeBubble.classList.add('bg-brand', 'text-white');
+        }
+
+        // Initialize Tab 1
+        document.addEventListener('DOMContentLoaded', () => {
+            switchTab('tab1');
+        });
+    </script>
+</body>
+</html>
